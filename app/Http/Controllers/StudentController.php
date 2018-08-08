@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Student;
 
@@ -39,6 +40,20 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = $request->validate([
+            'nim'=> 'required|unique:students|max:20',
+            'name'=>'required',
+            'password' => 'required|string|min:6|confirmed',
+            'gender'=>'required',
+            'dob'=>'required',
+            'phone'=>'required',
+            'address'=>'required'
+        ]);
+        $validatedData['password'] = Hash::make($request->password);
+        $do = Student::create($validatedData);
+        if($do)
+
+        return redirect()->back()->with('status', 'Success Create your account');
     }
 
     /**
