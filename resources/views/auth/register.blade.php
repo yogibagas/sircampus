@@ -128,7 +128,11 @@
                                         @endif
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="gi gi-keys"></i></span>
+<<<<<<< HEAD
                                             <input type="text" id="identity" name="identity" class="form-control input-lg" placeholder="Your Identity" readonly="" value="{{date('ym').sprintf('%04u', $index)}}">
+=======
+                                            <input type="text" id="identity" name="identity" class="form-control input-lg" placeholder="Your Identity" readonly="" value="{{date('ymd').sprintf('%04u', $index)}}">
+>>>>>>> 5e604aefcf6c86a7139127a8ee898aedbe800d78
                                         </div>
                                     </div>
                                 </div>

@@ -74,7 +74,11 @@
                         <div class="block push-bit">
                             <!-- Login Form -->
                             <form action="{{ route('login') }}" method="post" id="form-login" class="form-horizontal">
+<<<<<<< HEAD
                                 @csrf
+=======
+                                
+>>>>>>> 5e604aefcf6c86a7139127a8ee898aedbe800d78
                                 @if (session('status'))
                                     <div class="alert alert-success">
                                         {{ session('status') }}
@@ -83,8 +87,13 @@
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <div class="input-group">
+<<<<<<< HEAD
                                             <span class="input-group-addon"><i class="gi gi-keys"></i></span>
                                             <input type="text" id="identity" name="identity" class="form-control input-lg" placeholder="Place your identity or NIM here">
+=======
+                                            <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
+                                            <input type="text" id="login-email" name="login-email" class="form-control input-lg" placeholder="Email">
+>>>>>>> 5e604aefcf6c86a7139127a8ee898aedbe800d78
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +101,11 @@
                                     <div class="col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+<<<<<<< HEAD
                                             <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Password">
+=======
+                                            <input type="password" id="login-password" name="login-password" class="form-control input-lg" placeholder="Password">
+>>>>>>> 5e604aefcf6c86a7139127a8ee898aedbe800d78
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +141,11 @@
                                         @endif
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="gi gi-keys"></i></span>
+<<<<<<< HEAD
                                             <input type="text" id="identity" name="identity" class="form-control input-lg" placeholder="Your Identity" readonly="" value="{{date('ym').sprintf('%04u', $index)}}">
+=======
+                                            <input type="text" id="identity" name="identity" class="form-control input-lg" placeholder="Your Identity" readonly="" value="{{date('ymd').sprintf('%04u', $index)}}">
+>>>>>>> 5e604aefcf6c86a7139127a8ee898aedbe800d78
                                         </div>
                                     </div>
                                 </div>

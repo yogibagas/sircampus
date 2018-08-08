@@ -150,8 +150,14 @@
                 <!-- Page content -->
                 <div id="page-content">
                     <!-- Mini Top Stats Row -->
+<<<<<<< HEAD
                         @if(Auth::guard('web')->check())
                     <div class="row">
                         @include('components.datas')
                     </div>
+=======
+                    <div class="row">
+                        @if(Auth::guard('web')->check())
+                        @include('components.datas')
+>>>>>>> 5e604aefcf6c86a7139127a8ee898aedbe800d78
                         @endif
