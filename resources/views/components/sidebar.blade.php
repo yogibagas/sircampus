@@ -29,11 +29,7 @@
                         <!-- Sidebar Navigation -->
                         <ul class="sidebar-nav">
                             <li>
-<<<<<<< HEAD
                                 <a href="{{route('home')}}" class="@yield('home')"><i class="gi gi-stopwatch sidebar-nav-icon"></i>Dashboard</a>
-=======
-                                <a href="{{route('home')}}" class=" active"><i class="gi gi-stopwatch sidebar-nav-icon"></i>Dashboard</a>
->>>>>>> 5e604aefcf6c86a7139127a8ee898aedbe800d78
                             </li>
                             <li class="sidebar-header">
                                 <span class="sidebar-header-options clearfix">
@@ -41,12 +37,8 @@
                                 <span class="sidebar-header-title">Students</span>
                             </li>
                             <li>
-<<<<<<< HEAD
                                 <a href="{{url('/students')}}" class="{{strpos(Route::current()->uri,'create')?'active':false}}"><i class="gi gi-charts sidebar-nav-icon"></i>Students</a>
                                 
-=======
-                                <a href="page_widgets_stats.html"><i class="gi gi-charts sidebar-nav-icon"></i>Statistics</a>
->>>>>>> 5e604aefcf6c86a7139127a8ee898aedbe800d78
                             </li>
                             <li>
                                 <a href="page_widgets_social.html"><i class="gi gi-share_alt sidebar-nav-icon"></i>Social</a>
