@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;    
 use App\User;
 
@@ -28,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/staff';
 
     /**
      * Create a new controller instance.
@@ -49,7 +48,18 @@ class LoginController extends Controller
     {
         return 'identity';
     }
+
     public function guard(){
-        return \Auth::guard('students');
+        return \Auth::guard('web');
+    }
+
+    public function logout(){
+       $this->guard()->logout();
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect()->route('staff');
+
     }
 }

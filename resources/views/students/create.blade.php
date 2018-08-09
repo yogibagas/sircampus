@@ -15,7 +15,7 @@
 			@csrf
 <div class="form-group">
 <label for="example-nf-email">NIM</label>
-<input type="text" id="nim" value="{{date('ym').'01'.sprintf('%04u', $nim)}}" readonly="" name="nim" class="form-control" placeholder="Enter nim..">
+<input type="text" id="identity" value="{{date('ym').'01'.sprintf('%04u', $nim)}}" readonly="" name="identity" class="form-control" placeholder="Enter nim..">
 </div>
 
 <div class="form-group">

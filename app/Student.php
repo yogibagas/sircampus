@@ -10,7 +10,7 @@ class Student extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'nim','name','dob','phone','address','gender','password',
+        'identity','name','dob','phone','address','gender','password',
         ];
 
     protected $hidden = ['password',  'remember_token'];

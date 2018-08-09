@@ -14,14 +14,14 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     // your routes
 
-	Route::get('/', function () {
+	Route::get('/staff', function () {
 	    return view('welcome');
 	});
 
-	Route::get('/students',function(){
+	Route::get('/staff/students',function(){
 		return view('student');
 	});
 	Route::resource('student','StudentController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 });
