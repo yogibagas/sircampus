@@ -16,6 +16,7 @@ class StudentController extends Controller
     public function index()
     {
         //
+        return view('wecome');
     }
 
     /**
@@ -41,12 +42,12 @@ class StudentController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'identity'=> 'required|unique:students|max:20',
+            'nim'=> 'required|unique:students|max:20',
             'name'=>'required',
             'password' => 'required|string|min:6|confirmed',
             'gender'=>'required',
             'dob'=>'required',
-            'phone'=>'required',
+            'phone'=>'required|numeric',
             'address'=>'required'
         ]);
         $validatedData['password'] = Hash::make($request->password);

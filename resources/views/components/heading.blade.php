@@ -68,7 +68,7 @@
 
             <!-- Main Container -->
             <div id="main-container">
-              
+
                 <header class="navbar navbar-default">
                     <!-- Left Header Navigation -->
                     <ul class="nav navbar-nav-custom">
@@ -128,19 +128,19 @@
                             </a>
                             <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
                                 <li class="dropdown-header text-center">Account</li>
-                              
+
                                 <li>
                                     <a href="page_ready_user_profile.html">
                                         <i class="fa fa-user fa-fw pull-right"></i>
                                         Profile
                                     </a>
-                                   
+
                                 </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="#" class="logout"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                         <!-- END User Dropdown -->
@@ -150,8 +150,8 @@
                 <!-- Page content -->
                 <div id="page-content">
                     <!-- Mini Top Stats Row -->
-                        @if(Auth::guard('web')->check())
+                    @if(Auth::guard('web')->check())
                     <div class="row">
                         @include('components.datas')
                     </div>
-                        @endif
+                    @endif

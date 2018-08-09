@@ -73,7 +73,7 @@
                         <!-- Login Block -->
                         <div class="block push-bit">
                             <!-- Login Form -->
-                            <form action="{{ route('std.login') }}" method="post" id="form-login" class="form-horizontal">
+                            <form action="{{ route('login') }}" method="post" id="form-login" class="form-horizontal">
                                 @csrf
                                 @if (session('status'))
                                     <div class="alert alert-success">
@@ -84,7 +84,7 @@
                                     <div class="col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="gi gi-keys"></i></span>
-                                            <input type="text" id="identity" name="identity" class="form-control input-lg" placeholder="Place your identity or NIM here">
+                                            <input type="text" id="login-email" name="identity" class="form-control input-lg" placeholder="Put your NIM/Identity Here..">
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                     <div class="col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
-                                            <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Password">
+                                            <input type="password" id="login-password" name="password" class="form-control input-lg" placeholder="Password">
                                         </div>
                                     </div>
                                 </div>
