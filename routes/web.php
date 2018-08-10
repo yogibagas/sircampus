@@ -29,6 +29,7 @@ Route::group(['prefix' => 'staff'], function () {
     Route::get('/register', 'StaffAuth\RegisterController@registrationPage')->name('staff.register');
     Route::post('/register', 'StaffAuth\RegisterController@register')->name('staff.registerPost');
 
+    Route::group(['middleware' => 'guest.staff'],function(){
     Route::get('/', 'StaffController@index')->name('staff');
-    
+    });
 }); 

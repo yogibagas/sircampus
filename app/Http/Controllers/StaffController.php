@@ -11,11 +11,6 @@ class StaffController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +18,6 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('staff.home');
+        return view('staff.welcome');
     }
 }

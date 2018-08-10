@@ -17,8 +17,8 @@ class RedirectIfStaffAuthenticated
     public function handle($request, Closure $next)
     {
         $auth = Auth::guard('staff');
-        if ($auth->check()) {
-            return redirect()->route('staff');
+        if (!$auth->check()) {
+           return redirect()->route('staff');
         }
         return $next($request);
     }
