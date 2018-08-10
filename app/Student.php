@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Student extends Authenticatable
 {
     use Notifiable;
+    protected $guard = 'students';
 
     protected $fillable = [
         'nim','name','dob','phone','address','gender','password',

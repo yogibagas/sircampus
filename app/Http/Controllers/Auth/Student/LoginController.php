@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Auth\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;    
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Student;
+
+use DB;
+use App\Quotation;
 
 class LoginController extends Controller
 {
@@ -52,7 +56,23 @@ class LoginController extends Controller
         return \Auth::guard('students');
     }
     
-  
+    public function login(Request $req) {
+    $nim = $req->input('identity');
+
+    $checkLogin = DB::table('students')->where(['nim'=>$nim])->first();
+
+    $password = Hash::check($req->input('password'), $checkLogin->password);
+    if(count($checkLogin) > 0 && $password) {
+        echo "Login Successfull";
+        
+dd(Auth::guard());
+    }
+    else {
+dd('fail');
+        // echo "Login Failed!";
+//        return redict()->back()->with('status','Login Failed');
+    }
+}
     
     
     public function logout (Request $request){
