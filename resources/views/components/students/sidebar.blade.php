@@ -19,7 +19,7 @@
                     </a>
                 </div>
                 
-                <div class="sidebar-user-name">{{ucwords(Auth::guard('staff')->user()->name)}}</div>
+                <div class="sidebar-user-name">{{ucwords(Auth::guard('web')->user()->name)}}</div>
                 <div class="sidebar-user-links">
                     <a href="#" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
                     <a href="#" class="logout" data-toggle="tooltip" data-placement="bottom" title="Logout">    <i class="gi gi-exit"></i></a>

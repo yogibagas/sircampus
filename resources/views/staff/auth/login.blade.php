@@ -76,19 +76,19 @@
                             <form action="{{ route('staff.loginPost') }}" method="post" id="form-login" class="form-horizontal">
                                 @csrf
                                 @if (session('status'))
-                                    <div class="alert alert-success">
-                                        {{ session('status') }}
-                                    </div>
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
                                 @endif
                                 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <div class="input-group">

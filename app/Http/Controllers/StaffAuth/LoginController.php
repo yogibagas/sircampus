@@ -41,14 +41,13 @@ class LoginController extends Controller
     public function loginPage() {
         return view('staff.auth.login');
     }
-    
     public function logout(Request $request) {
         $this->guard()->logout();
         $request->session()->flush();
 
         $request->session()->regenerate();
 
-        return redirect()->route('staff');
+        return redirect()->route('staff.login');
     }
 
     /**

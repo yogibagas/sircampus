@@ -1,5 +1,3 @@
-@extends('layouts.appStudent')
-@section('content')
 <div class="row">
     <div class="col-md-12">
         <!-- Timeline Widget -->
@@ -103,4 +101,3 @@
 
 </div>
 <!-- END Widgets Row -->
-@endsection
