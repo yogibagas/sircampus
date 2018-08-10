@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class StudentAuthenticate {
-
+class StaffAuthenticate
+{
     /**
      * Handle an incoming request.
      *
@@ -13,11 +13,8 @@ class StudentAuthenticate {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
-        $auth = \Auth::guard('students');
-        if (!$auth->check()) {
-            return redirect()->route('/staff');
-        }
-
-}
+    public function handle($request, Closure $next)
+    {
+        return $next($request);
+    }
 }

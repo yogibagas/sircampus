@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/staff';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -50,11 +50,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'identity' => 'required|string|max:255|unique:staffs',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'dob'=>'required|date',
-            'gender'=>'required|boolean',
-            'phone'=>'required|string',
         ]);
     }
 
@@ -66,27 +63,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return dd($data);
-    }
-    public function register(\Illuminate\Http\Request $request) {
-        //dd($request->toArray());
-        $store = [
-            'name'=>$request->name,
-            'identity'=>$request->identity,
-            'password'=> Hash::make($request->password),
-            'dob'=>$request->dob,
-            'gender'=>$request->gender,
-            'phone'=>$request->phone
-        ];
-        $do=User::create($store);
-        if($do)
-        return redirect('/staff/login')->with('status', 'Success Create your account');
-    }
-    
-    public function showRegistrationForm() {
-        $staffs = User::get()->count();
-        $total = $staffs+1;
-        
-        return view('auth.staff.register')->with('index',$total);
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
-class AuthStaff
+class RedirectIfStaffAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -15,10 +16,9 @@ class AuthStaff
      */
     public function handle($request, Closure $next)
     {
-        
-        $auth = \Auth::guard('staff');
-        if (!$auth->check()) {
-            return redirect()->route('/');
+        $auth = Auth::guard('staff');
+        if ($auth->check()) {
+            return redirect()->route('staff');
         }
         return $next($request);
     }

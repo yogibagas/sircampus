@@ -17,9 +17,8 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $auth = \Auth::guard('web');
-        if ($auth->check()) {
-            return redirect('/staff');
+        if (Auth::guard($guard)->check()) {
+            return redirect('/home');
         }
 
         return $next($request);

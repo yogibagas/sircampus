@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\StaffAuth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'staff/home';
 
     /**
      * Create a new controller instance.
@@ -34,6 +36,33 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest.staff', ['except' => 'logout']);
     }
+    public function loginPage() {
+        return view('staff.auth.login');
+    }
+    
+    public function logout(Request $request) {
+        $this->guard()->logout();
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect()->route('staff');
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard() {
+        return Auth::guard('staff');
+    }
+    
+    public function username(){
+        return 'identity';
+    }
+    
+    
 }

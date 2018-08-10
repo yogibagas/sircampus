@@ -73,7 +73,7 @@
                         <!-- Login Block -->
                         <div class="block push-bit">
                             <!-- Login Form -->
-                            <form action="{{ route('std.login') }}" method="post" id="form-login" class="form-horizontal">
+                            <form action="{{ route('login') }}" method="post" id="form-login" class="form-horizontal">
                                 @csrf
                                 @if (session('status'))
                                     <div class="alert alert-success">
@@ -128,7 +128,7 @@
                                         @endif
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="gi gi-keys"></i></span>
-                                            <input type="text" id="identity" name="identity" class="form-control input-lg" placeholder="Your Identity" readonly="" value="{{date('ym').sprintf('%04u', $index)}}">
+                                            <input type="text" id="identity" name="identity" class="form-control input-lg" placeholder="Your Identity" readonly="" value="{{date('ym')}}">
                                         </div>
                                     </div>
                                 </div>
