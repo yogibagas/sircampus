@@ -29,7 +29,8 @@ Route::group(['prefix' => 'staff'], function () {
     Route::get('/register', 'StaffAuth\RegisterController@registrationPage')->name('staff.register');
     Route::post('/register', 'StaffAuth\RegisterController@register')->name('staff.registerPost');
 
-    Route::group(['middleware' => 'guest.staff'],function(){
+    Route::group(['middleware' => 'auth.staff'],function(){
     Route::get('/', 'StaffController@index')->name('staff');
+    Route::resource('student', 'Staff\StudentController');
     });
 }); 

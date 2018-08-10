@@ -3,9 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
-class StaffAuthenticate
-{
+class StaffAuthenticate {
+
     /**
      * Handle an incoming request.
      *
@@ -13,8 +14,12 @@ class StaffAuthenticate
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next) {
+        $auth = Auth::guard('staff');
+        if (!$auth->check()) {
+            return redirect()->route('staff.login');
+        }
         return $next($request);
     }
+
 }
