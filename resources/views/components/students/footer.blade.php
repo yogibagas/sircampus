@@ -11,7 +11,7 @@
 <!-- END Page Container -->
 <!-- logout form -->
 
-<form method="GET" id="logout" action="{{route('staff.logout')}}">
+<form method="POST" id="logout" action="{{route('logout')}}">
     @csrf
 </form>
 

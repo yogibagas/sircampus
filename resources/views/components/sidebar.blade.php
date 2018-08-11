@@ -30,7 +30,7 @@
             <!-- Sidebar Navigation -->
             <ul class="sidebar-nav">
                 <li>
-                    <a href="{{route('staff')}}" class="@yield('home')"><i class="gi gi-stopwatch sidebar-nav-icon"></i>Dashboard</a>
+                    <a href="{{route('staff')}}" class="{{ Request::is('staff') ? 'active' : '' }}"><i class="gi gi-stopwatch sidebar-nav-icon"></i>Dashboard</a>
                 </li>
                 <li class="sidebar-header">
                     <span class="sidebar-header-options clearfix">
@@ -38,8 +38,7 @@
                     <span class="sidebar-header-title">Students</span>
                 </li>
                 <li>
-                    <a href="{{url('/staff/students')}}" class="{{strpos(Route::current()->uri,'create')?'active':false}}"><i class="gi gi-charts sidebar-nav-icon"></i>Students</a>
-
+                    <a href="{{route('student.index')}}" class="{{ Request::is('staff/student*') ?  'active' : '' }}"><i class="gi gi-charts sidebar-nav-icon"></i>Students</a>
                 </li>
                 <li>
                     <a href="page_widgets_social.html"><i class="gi gi-share_alt sidebar-nav-icon"></i>Social</a>

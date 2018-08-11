@@ -27,4 +27,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function valGender(){
+        print_r($this->attributes);
+    }
+    public function getgenderFakeAttribute()
+    {
+        if($this->gender == 1)
+            $gender = 'Male';
+        else
+            $gender ="Female";
+                
+        return $gender;
+    }
+    
 }

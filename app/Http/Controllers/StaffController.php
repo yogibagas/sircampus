@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Staff;
+use Carbon\Carbon;
 
 class StaffController extends Controller
 {
@@ -18,6 +21,14 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('staff.welcome');
+        $total = User::get()->count();
+        $mhsnow = User::query()->whereYear('created_at',Carbon::now()->year)->count();
+        $admin = Staff::get()->count();
+        $mhs = [
+            'total'=>$total,
+            'thisYear'=>$mhsnow,
+            'admin'=>$admin
+        ];
+        return view('staff.welcome')->with('mhs',$mhs);
     }
 }

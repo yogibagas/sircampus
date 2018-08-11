@@ -150,8 +150,3 @@
                 <!-- Page content -->
                 <div id="page-content">
                     <!-- Mini Top Stats Row -->
-                    @if(Auth::guard('staff')->check())
-                    <div class="row">
-                        @include('components.datas')
-                    </div>
-                    @endif

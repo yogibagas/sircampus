@@ -7,7 +7,7 @@
                 <i class="fa fa-file-text"></i>
             </div>
             <h3 class="widget-content text-right animation-pullDown">
-                25 <strong>Data</strong><br>
+                {{$mhs['total']}} <strong>Data</strong><br>
                 <small>Mahasiswa</small>
             </h3>
         </div>
@@ -19,11 +19,11 @@
     <a href="page_comp_charts.html" class="widget widget-hover-effect1">
         <div class="widget-simple">
             <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
-                <i class="gi gi-usd"></i>
+                <i class="gi gi-calendar"></i>
             </div>
             <h3 class="widget-content text-right animation-pullDown">
-                + <strong>250%</strong><br>
-                <small>Sales Today</small>
+                {{$mhs['thisYear']}}<strong> Data</strong><br>
+                <small>Mahasiswa {{date('Y')}}</small>
             </h3>
         </div>
     </a>
@@ -34,11 +34,11 @@
     <a href="page_ready_inbox.html" class="widget widget-hover-effect1">
         <div class="widget-simple">
             <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
-                <i class="gi gi-envelope"></i>
+                <i class="gi gi-kettle"></i>
             </div>
             <h3 class="widget-content text-right animation-pullDown">
-                5 <strong>Messages</strong>
-                <small>Support Center</small>
+                {{$mhs['admin']}} <strong>Account</strong>
+                <small>Administrator</small>
             </h3>
         </div>
     </a>

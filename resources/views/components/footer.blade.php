@@ -37,6 +37,9 @@
 <script>$(function () {
     Index.init();
 });</script>
+
+        <script src="{{url('js/pages/tablesDatatables.js')}}"></script>
+        <script>$(function(){ TablesDatatables.init(); });</script>
 <script>
     $(document).ready(function () {
         $(".logout").on('click', function () {

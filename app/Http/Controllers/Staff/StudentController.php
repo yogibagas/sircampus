@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
@@ -15,6 +17,8 @@ class StudentController extends Controller
     public function index()
     {
         //
+        $data = User::get();
+        return view('staff.students.student')->with('data',$data);
     }
 
     /**
@@ -25,6 +29,10 @@ class StudentController extends Controller
     public function create()
     {
         //
+        $nim = 1+User::query()->whereYear('created_at',Carbon::now()->year)->count();
+        $model = new User();
+        return view('staff.students.form')->with('nim',$nim)
+                ->with(compact('model',$model));
     }
 
     /**
@@ -36,6 +44,23 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         //
+        $validator      = \Validator::make($request->all(),[
+            'nim'=> 'required|unique:students|max:20',
+            'name'=>'required',
+            'password' => 'required|string|min:6|confirmed',
+            'gender'=>'required',
+            'dob'=>'required',
+            'phone'=>'required|numeric',
+            'address'=>'required'
+        ]);
+        
+        
+        if($validator->fails()){
+            return redirect()->back()->withInput($request->all())->withErrors($validator->errors());
+        }
+        
+        \Session::flash('success','Data layanan berhasil ditambahkan');
+        
     }
 
     /**
