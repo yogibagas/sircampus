@@ -30,5 +30,6 @@ Route::group(['prefix' => 'staff'], function () {
     Route::group(['middleware' => 'auth.staff'],function(){
     Route::get('/', 'StaffController@index')->name('staff');
     Route::resource('student', 'Staff\StudentController');
+    Route::get('/student/{id}/delete', 'Staff\StudentController@delete')->name('student.delete');
     });
 }); 

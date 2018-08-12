@@ -17,7 +17,7 @@ class StudentController extends Controller
     public function index()
     {
         //
-        $data = User::get();
+        $data = User::orderBy('status')->get();
         return view('staff.students.student')->with('data',$data);
     }
 
@@ -45,7 +45,7 @@ class StudentController extends Controller
     {
         //
         $validator      = \Validator::make($request->all(),[
-            'nim'=> 'required|unique:students|max:20',
+            'nim'=> 'required|unique:users|max:20',
             'name'=>'required',
             'password' => 'required|string|min:6|confirmed',
             'gender'=>'required',
@@ -58,9 +58,19 @@ class StudentController extends Controller
         if($validator->fails()){
             return redirect()->back()->withInput($request->all())->withErrors($validator->errors());
         }
+        $data = [
+          'nim' => $request->nim,
+            'name' => $request->name,
+            'password' => bcrypt($request->password),
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'phone' => $request->phone,
+            'address' => $request->address
+        ];
         
-        \Session::flash('success','Data layanan berhasil ditambahkan');
-        
+       User::create($data);
+        \Session::flash('success','Mahasiswa with nim '.$request->nim.' successfully created');
+        return redirect()->route('student.index');
     }
 
     /**
@@ -83,6 +93,11 @@ class StudentController extends Controller
     public function edit($id)
     {
         //
+        $model = User::findOrFail($id);
+        
+        $nim = $model->nim;
+        return view('staff.students.form')->with('nim',$nim)
+                ->with(compact('model',$model));
     }
 
     /**
@@ -95,6 +110,32 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator      = \Validator::make($request->all(),[
+            'nim'=> 'required|max:20|unique:users,nim,'.$id,
+            'name'=>'required',
+            'password' => 'required|string|min:6|confirmed',
+            'gender'=>'required',
+            'dob'=>'required',
+            'phone'=>'required|numeric',
+            'address'=>'required'
+        ]);
+        
+        
+        if($validator->fails()){
+            return redirect()->back()->withInput($request->all())->withErrors($validator->errors());
+        }
+        $data = [
+          'nim' => $request->nim,
+            'name' => $request->name,
+            'password' => bcrypt($request->password),
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'phone' => $request->phone,
+            'address' => $request->address
+        ];
+        $user = User::findOrFail($id)->update($data);
+        \Session::flash('success','Mahasiswa with nim '.$request->nim.' successfully updated');
+        return redirect()->route('student.index');
     }
 
     /**
@@ -103,8 +144,21 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         //
+        $user = User::findOrFail($id);
+        if($user->status == 1){
+            $user->status = 0;
+            $msg = "Deactive";
+        }
+        else{
+            $user->status = 1;
+            $msg = "Active";
+        }
+        
+        $user->save();
+        \Session::flash('success','Mahasiswa with nim '.$user->nim.' turned to '.$msg.' mahasiswa');
+        return redirect()->route('student.index');
     }
 }

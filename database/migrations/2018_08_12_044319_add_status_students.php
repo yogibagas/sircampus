@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPasswordStudents extends Migration
+class AddStatusStudents extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddPasswordStudents extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('password');
-            $table->rememberToken();   
+            $table->boolean('status')->default(1);
         });
     }
 
@@ -27,7 +26,7 @@ class AddPasswordStudents extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

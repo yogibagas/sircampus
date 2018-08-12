@@ -14,9 +14,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $table = 'students';
     protected $fillable = [
-        'name', 'email', 'password',
+        'nim', 'name', 'password','gender','dob','phone','address'
     ];
 
     /**
@@ -27,9 +26,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function valGender(){
-        print_r($this->attributes);
-    }
     public function getgenderFakeAttribute()
     {
         if($this->gender == 1)
@@ -38,6 +34,14 @@ class User extends Authenticatable
             $gender ="Female";
                 
         return $gender;
+    }
+    public function getfakeStatusAttribute(){
+        if($this->status == 1)
+                $status = 'Active';
+        else
+            $status = 'Deactive';
+        
+        return $status;
     }
     
 }

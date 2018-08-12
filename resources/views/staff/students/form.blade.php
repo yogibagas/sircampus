@@ -23,25 +23,24 @@
                 {{ session('status') }}
             </div>
             @endif
-            <form action="{{route('student.store')}}" method="post" class="">
+            <form action="{{ $model->exists ? route('student.update',$model->id) : route('student.store')}}" method="post" class="">
                 @csrf
-
                 {{ $model->exists ? method_field('PUT') : method_field('POST') }}
                 <div class="form-group">
                     <label for="example-nf-email">NIM</label>
-                    <input type="text" id="nim" value="{{date('ym').'01'.sprintf('%04u', $nim)}}" readonly="" name="nim" class="form-control" placeholder="Enter nim..">
+                    <input type="text" id="nim" value="{{ $model->exists ? $nim : date('ym').'01'.sprintf('%04u', $nim) }}" readonly="" name="nim" class="form-control" placeholder="Enter nim..">
                 </div>
                 <div class="form-group">
                     <label for="example-nf-password">Name</label>
-                    <input type="name" id="name" name="name" class="form-control" placeholder="Enter name.." value="{{old('gender',$model->name)}}">
+                    <input type="name" id="name" name="name" class="form-control" placeholder="Enter name.." value="{{old('name',$model->name)}}">
                     <span class="help-block">Please enter your name</span>
                 </div>
                 <div class="form-group">
                     <label for="example-nf-password">Gender </label>
-                    <select id="gender" name="gender" class="select-chosen form-control" data-placeholder="Choose student gender">
-                        <option ></option>
-                        <option value="1">Male</option>
-                        <option value="0">Female</option>
+                    <select id="gender" name="gender" class="form-control" data-placeholder="Choose student gender">
+                        <option value="">--- Select Gender</option>
+                        <option value="1" {{ $model->exists ? $model->gender == 1 ? "selected":false : false}}>Male</option>
+                        <option value="0" {{ $model->exists ? $model->gender == 0 ? "selected":false : false}}>Female</option>
                     </select>
                     <span class="help-block">Choose your gender</span>
                 </div>
@@ -58,19 +57,19 @@
 
                 <div class="form-group">
                     <label for="example-nf-password">Date of Birth</label>
-                    <input type="text" id="dob" name="dob" class="form-control input-datepicker" data-date-format="yyyy/mm/dd" placeholder="Click me to choose the date" readonly="" required="">
+                    <input type="text" id="dob" name="dob" class="form-control input-datepicker" data-date-format="yyyy/mm/dd" value="{{old('dob',$model->dob)}}" placeholder="Click me to choose the date" readonly="" required="">
                     <span class="help-block">Please choose your Date of Birth</span>
                 </div>
 
                 <div class="form-group">
                     <label for="example-nf-password">Phone</label>
-                    <input type="text" id="phone" name="phone" class="form-control" placeholder="phone" required="">
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="phone" value="{{old('phone',$model->phone)}}" required="">
                     <span class="help-block">Please choose your Phone</span>
                 </div>
 
                 <div class="form-group">
                     <label for="example-nf-password">Address</label>
-                    <input type="text" id="address" name="address" class="form-control" placeholder="address" required="">
+                    <input type="text" id="address" name="address" class="form-control" value="{{old('address',$model->address)}}" placeholder="address" required="">
                     <span class="help-block">Please choose your Adress</span>
                 </div>
 
