@@ -109,4 +109,19 @@ class LectureController extends Controller
     {
         //
     }
+    public function delete($id){
+    	$data = Lecturer::findOrFail($id);
+    	if($data->status == 1){
+    		$data->status = 0;
+    		$msg = "Deactive";
+    	}
+    	else{
+    		$data->status = 1;
+    		$msg = "Active";
+    		} 
+
+        $data->save();
+        \Session::flash('success','Lecture with name '.$data->name.' turned to '.$msg.' Status');
+        return redirect()->route('lecture.index');	
+    }
 }

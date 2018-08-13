@@ -40,7 +40,7 @@
                         <td>{{Helper::getFake($l->status,'Active','Deactive')}}</td>
                         <td class="text-center">
                              <a href="{{ route('lecture.edit',$l->id)}}" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                <a href="{{ route('lecture.destroy',$l->id)}}" data-toggle="tooltip" title="" class="btn btn-{{$l->status == 1?"danger":"info"}}" 
+                                <a href="{{ route('lecture.delete',$l->id)}}" data-toggle="tooltip" title="" class="btn btn-{{$l->status == 1?"danger":"info"}}" 
                                    data-original-title="{{ $l->status == 1 ? "Deactive This Mahasiswa" : "Activated This Mahasiswa"}}">
                                     <i class="{{ $l->status == 1 ? 'fa fa-times' : 'fa fa-check' }}"></i>
                                 </a>
