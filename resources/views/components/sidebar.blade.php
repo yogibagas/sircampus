@@ -34,14 +34,14 @@
                 </li>
                 <li class="sidebar-header">
                     <span class="sidebar-header-options clearfix">
-                        <a href="javascript:void(0)" data-toggle="tooltip" title="The menu below only for manage student data"><i class="gi gi-flash"></i></a></span>
-                    <span class="sidebar-header-title">Students</span>
+                        <a href="javascript:void(0)" data-toggle="tooltip" title="The menu below only for manage University data"><i class="gi gi-flash"></i></a></span>
+                    <span class="sidebar-header-title">University Data</span>
                 </li>
                 <li>
                     <a href="{{route('student.index')}}" class="{{ Request::is('staff/student*') ?  'active' : '' }}"><i class="gi gi-charts sidebar-nav-icon"></i>Students</a>
                 </li>
                 <li>
-                    <a href="page_widgets_social.html"><i class="gi gi-share_alt sidebar-nav-icon"></i>Social</a>
+                    <a href="{{route('lecture.index')}}" class="{{ Request::is('staff/lecture*') ?  'active' : '' }}"><i class="gi gi-user sidebar-nav-icon"></i>Lecturers</a>
                 </li>
                 <li>
                     <a href="page_widgets_media.html"><i class="gi gi-film sidebar-nav-icon"></i>Media</a>

@@ -5,17 +5,15 @@
         <div class="block-title">
             <h2>Students Data</h2>
         </div>
-        <div class="table-responsive">
-            <div class="col-md-12">
+        
                 <a href="{{route('student.create')}}" class=" btn btn-default" style="margin-bottom:20px;">Create new student</a>
-            </div>
-            <div class="col-md-12">
+            
                 @if(Session::has('success'))
                 <div class="alert alert-danger">
                     {{Session::get('success')}}
                 </div>
                 @endif
-            </div>
+        <div class="table-responsive">
             <table id="example-datatable" class="table table-vcenter table-bordered table-striped">
                 <thead>
                     <tr>
