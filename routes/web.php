@@ -34,5 +34,8 @@ Route::group(['prefix' => 'staff'], function () {
 
     Route::resource('lecture','Staff\LectureController');
     Route::get('/lecture/{id}/delete','Staff\LectureController@delete')->name('lecture.delete');
+    
+    Route::resource('course','Staff\CourseController');
+    Route::get('/course/{id}/delete','Staff\CourseController@delete')->name('course.delete');
     });
 }); 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Lecturer;
+use App\Course;
+use Carbon\Carbon;
 
 class LectureController extends Controller
 {
@@ -16,7 +18,7 @@ class LectureController extends Controller
     public function index()
     {
         //
-        $lecture = Lecturer::orderBy('id','desc')->orderBy('status','asc')->get();
+        $lecture = Lecturer::orderBy('id','asc')->orderBy('status','asc')->get();
         return view('staff.lecture.lecture')
         ->with(compact('lecture',$lecture));
     }
@@ -30,7 +32,9 @@ class LectureController extends Controller
     {
         //
         $model = new Lecturer();
-        return view('staff.lecture.form')->with(compact('model',$model));
+        $course = Course::get()->where('status',1);
+        return view('staff.lecture.form')->with(compact('model',$model))
+                ->with('course',$course);
     }
 
     /**
@@ -39,26 +43,15 @@ class LectureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\Staff\Lecture\StoreRequest $request)
     {
-        $validator      = \Validator::make($request->all(),[
-            'name'=>'required',
-            'gender'=>'required',
-            'dob'=>'required',
-            'phone'=>'required|numeric',
-            'address'=>'required'
-        ]);
-        
-        
-        if($validator->fails()){
-            return redirect()->back()->withInput($request->all())->withErrors($validator->errors());
-        }
         $data = [
             'name' => $request->name,
             'gender' => $request->gender,
             'dob' => $request->dob,
             'phone' => $request->phone,
-            'address' => $request->address
+            'address' => $request->address,
+            'idCourses'=>$request->idCourses
         ];
         $lecture = Lecturer::create($data);
         \Session::flash('success','Lecture with name '.$request->name.' successfully created');
@@ -85,6 +78,11 @@ class LectureController extends Controller
     public function edit($id)
     {
         //
+        $model = Lecturer::findOrFail($id);
+        $course = Course::get()->where('status',1);
+        //dd($model->toArray());
+        return view('staff.lecture.form')->with(compact('model',$model))
+                ->with('course',$course);
     }
 
     /**
@@ -94,9 +92,19 @@ class LectureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\App\Http\Requests\Staff\Course\StoreRequest $request, $id)
     {
-        //
+        $data = [
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'idCourses'=>$request->idCourses
+        ];
+        $model = Lecturer::find($id)->update($data);
+        \Session::flash('success','Lecture with name '.$request->name.' successfully updated');
+        return redirect()->route('lecture.index');
     }
 
     /**

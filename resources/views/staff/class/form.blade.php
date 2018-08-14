@@ -16,7 +16,7 @@
        
         <div class="block">
             <div class="block-title">
-                <h2>{{strpos(Route::current()->uri,'create')?"New Lecture Form":"Update Lecture"}}</h2>
+                <h2>{{strpos(Route::current()->uri,'create')?"New Student Form":"Update Student"}}</h2>
             </div>
             @if (session('status'))
             <div class="alert alert-success">
@@ -39,15 +39,6 @@
                         <option value="0" {{ $model->exists ? $model->gender == 0 ? "selected":false : false}}>Female</option>
                     </select>
                     <span class="help-block">Choose your gender</span>
-                </div>
-                <div class="form-group">
-                    <label for="example-nf-password">Course </label>
-                    <select id="idCourse" name="idCourses" class="select-chosen form-control" data-placeholder="Choose lecture course">
-                        <option  {{ $model->idCourse==null ? false: "selected"}}></option>
-                        @foreach($course as $c)
-                        <option value="{{$c->id}}" {{ $model->exists ?$c->id == $model->idCourses ? "selected":false : false}}>{{$c->name}}</option>
-                        @endforeach
-                    </select>
                 </div>
 
                 <div class="form-group">

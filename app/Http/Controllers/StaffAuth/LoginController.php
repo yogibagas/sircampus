@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'staff/';
+   // protected $redirectTo = 'staff/';
 
     /**
      * Create a new controller instance.
@@ -57,6 +57,9 @@ class LoginController extends Controller
      */
     protected function guard() {
         return Auth::guard('staff');
+    }
+    protected function redirectTo() {
+        return route('staff.index');
     }
     
     public function username(){

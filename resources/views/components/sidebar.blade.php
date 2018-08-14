@@ -41,6 +41,9 @@
                     <a href="{{route('student.index')}}" class="{{ Request::is('staff/student*') ?  'active' : '' }}"><i class="gi gi-charts sidebar-nav-icon"></i>Students</a>
                 </li>
                 <li>
+                    <a href="{{route('course.index')}}" class="{{ Request::is('staff/course*') ?  'active' : '' }}"><i class="gi gi-book sidebar-nav-icon"></i>Course</a>
+                </li>
+                <li>
                     <a href="{{route('lecture.index')}}" class="{{ Request::is('staff/lecture*') ?  'active' : '' }}"><i class="gi gi-user sidebar-nav-icon"></i>Lecturers</a>
                 </li>
                 <li>

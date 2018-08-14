@@ -9,8 +9,6 @@
 <!-- END Main Container -->
 </div>
 <!-- END Page Container -->
-<!-- logout form -->
-
 <form method="GET" id="logout" action="{{route('staff.logout')}}">
     @csrf
 </form>
@@ -53,5 +51,7 @@
     })
 
 </script>
+
+@stack('scripts')
 </body>
 </html>

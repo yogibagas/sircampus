@@ -112,11 +112,6 @@
                                         <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Login to Dashboard</button>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-xs-12 text-center">
-                                        <a href="javascript:void(0)" id="link-register-login"><small>Create a new account</small></a>
-                                    </div>
-                                </div>
                             </form>
                             <!-- END Login Form -->
 

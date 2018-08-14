@@ -18,12 +18,12 @@
                     <tr>
                         <th>No</th>
                         <th>Name</th>
-                        <th>Courses</th>
                         <th>Date Of Birth</th>
                         <th>Gender</th>
                         <th>Address</th>
                         <th>Phone</th>
-                        <th>Registered</th>
+                        <th>Registered On</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -31,21 +31,17 @@
                     @foreach($lecture as $l)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{ucwords($l->name)}}</td>
-                        <td>{{ucwords($l->courses->name)}}</td>
+                        <td>{{$l->name}}</td>
                         <td>{{Helper::formatDate('d F Y',$l->dob)}}</td>
                         <td>{{Helper::getFake($l->gender,'Male','Female')}}</td>
                         <td>{{$l->address}}</td>
                         <td>{{$l->phone}}</td>
                         <td>{{Helper::formatDate('Y',$l->created_at)}}</td>
+                        <td>{{Helper::getFake($l->status,'Active','Deactive')}}</td>
                         <td class="text-center">
                              <a href="{{ route('lecture.edit',$l->id)}}" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
                                 <a href="{{ route('lecture.delete',$l->id)}}" data-toggle="tooltip" title="" class="btn btn-{{$l->status == 1?"danger":"info"}}" 
                                    data-original-title="{{ $l->status == 1 ? "Deactive This Mahasiswa" : "Activated This Mahasiswa"}}">
-                                    <i class="{{ $l->status == 1 ? 'fa fa-times' : 'fa fa-check' }}"></i>
-                                </a>
-                             <a href="#" data-toggle="modal" data-target="#myModal"
-                                class="btn btn-success" id="{{$l->id}}}" data-id="{{$l->id}}">
                                     <i class="{{ $l->status == 1 ? 'fa fa-times' : 'fa fa-check' }}"></i>
                                 </a>
                         </td>
@@ -56,24 +52,5 @@
             </table>
         </div>
     </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-          <div class="fetched-data">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
 </div>
 @endsection
