@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nim', 'name', 'password','gender','dob','phone','address'
+        'nim', 'name', 'password','gender','dob','phone','address','class_id'
     ];
 
     /**
@@ -42,6 +42,10 @@ class User extends Authenticatable
             $status = 'Deactive';
         
         return $status;
+    }
+    
+    public function Klas(){
+         return $this->hasOne('App\Klas','id');
     }
     
 }

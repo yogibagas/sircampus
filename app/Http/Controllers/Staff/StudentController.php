@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\Klas;
 use Carbon\Carbon;
+use DB;
 
 class StudentController extends Controller
 {
@@ -82,6 +84,8 @@ class StudentController extends Controller
     public function show($id)
     {
         //
+        $data = User::where('id',$id)->with('Klas')->first();
+        return response()->json($data);
     }
 
     /**
@@ -94,10 +98,41 @@ class StudentController extends Controller
     {
         //
         $model = User::findOrFail($id);
+    //FIND WHERE CLASS IS NOT LIMIT YET
+        //class used
+        $class = DB::table('users')
+                ->select('class_id',DB::raw('count(*) as data'))
+                ->whereNotNull('class_id')
+                ->groupBy('class_id')
+                ->get();
+        $classTemp = [];
+        foreach($class as $c)
+        {
+            $classTemp [$c->class_id] = $c->data;
+        }
+        $classUsed = [
+            'temp' => $classTemp
+        ];
         
+        $emptyClass = [];
+        $exclude = [];
+        foreach($classUsed['temp'] as $id=>$used){
+            $d = Klas::select('maxPerson')->where('id',$id)->get()->first();
+                $exclude [] = $id;
+            if($d->maxPerson - $used > 0 )
+                $emptyClass [] = $id;
+        }
+        
+        $OtherClass = Klas::whereNotIn('id',$exclude)->get();
+        foreach($OtherClass as $oc){
+            $emptyClass [] = $oc->id;
+        }
+        
+        $classCanUse = Klas::whereIn('id',$emptyClass)->get();
         $nim = $model->nim;
         return view('staff.students.form')->with('nim',$nim)
-                ->with(compact('model',$model));
+                ->with(compact('model',$model))
+                ->with('class',$classCanUse);
     }
 
     /**
@@ -131,8 +166,10 @@ class StudentController extends Controller
             'gender' => $request->gender,
             'dob' => $request->dob,
             'phone' => $request->phone,
-            'address' => $request->address
+            'address' => $request->address,
+            'class_id' => $request->class_id
         ];
+        //dd($data);
         $user = User::findOrFail($id)->update($data);
         \Session::flash('success','Mahasiswa with nim '.$request->nim.' successfully updated');
         return redirect()->route('student.index');

@@ -59,7 +59,7 @@ class LoginController extends Controller
         return Auth::guard('staff');
     }
     protected function redirectTo() {
-        return route('staff.index');
+        return route('staff');
     }
     
     public function username(){

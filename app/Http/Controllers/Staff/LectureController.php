@@ -18,7 +18,7 @@ class LectureController extends Controller
     public function index()
     {
         //
-        $lecture = Lecturer::orderBy('id','asc')->orderBy('status','asc')->get();
+        $lecture = Lecturer::orderBy('id','asc')->orderBy('status','asc')->with('courses')->get();
         return view('staff.lecture.lecture')
         ->with(compact('lecture',$lecture));
     }
@@ -67,6 +67,10 @@ class LectureController extends Controller
     public function show($id)
     {
         //
+        $lecture = Lecturer::where('id',$id)->orderBy('id','asc')
+                ->orderBy('status','asc')
+                ->with('courses')->first();
+        return response()->json($lecture);
     }
 
     /**

@@ -4,31 +4,35 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/xampp/htdocs/sircampus/app/Http/Middleware/RedirectIfAuthenticated.php</file>
-            <file>file:/D:/xampp/htdocs/sircampus/app/Class.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/app/Http/Middleware/StaffAuthenticate.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/app/Helper/Helpers.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/app/Http/Controllers/StaffAuth/LoginController.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/resources/views/staff/welcome.blade.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/resources/views/components/sidebar.blade.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/database/migrations/2018_08_12_052618_create_lecturers_table.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/resources/views/staff/lecture/lecture.blade.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/resources/views/components/students/footer.blade.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/app/Http/Controllers/Staff/KlasController.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/app/Http/Kernel.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/database/migrations/2018_08_12_044319_add_status_students.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/app/Http/Controllers/Staff/StudentController.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/resources/views/components/students/datas.blade.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/app/Http/Controllers/Staff/CourseController.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/app/Http/Controllers/StaffController.php</file>
-            <file>file:/D:/xampp/htdocs/sircampus/resources/views/staff/students/form.blade.php</file>
-            <file>file:/D:/xampp/htdocs/sircampus/resources/views/components/footer.blade.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/app/Klas.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/resources/views/components/heading.blade.php</file>
-            <file>file:/D:/xampp/htdocs/sircampus/routes/web.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/resources/lang/en/auth.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/routes/web.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/resources/views/welcome.blade.php</file>
-            <file>file:/D:/xampp/htdocs/sircampus/app/User.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/app/Providers/AppServiceProvider.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/app/User.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/database/migrations/2018_08_07_123536_create_staffs_table.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/app/Http/Requests/Staff/Lecture/StoreRequest.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/resources/views/components/datas.blade.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/database/migrations/2018_08_12_052653_create_schedules_table.php</file>
-            <file>file:/D:/xampp/htdocs/sircampus/database/migrations/2018_08_12_052603_create_lecturers_table.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/database/migrations/2018_08_16_141851_add_id_class_student.php</file>
             <file>file:/D:/xampp/htdocs/sircampus/resources/views/staff/students/student.blade.php</file>
+            <file>file:/D:/xampp/htdocs/sircampus/app/Course.php</file>
         </group>
     </open-files>
 </project-private>

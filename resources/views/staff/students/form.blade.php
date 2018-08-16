@@ -1,29 +1,28 @@
 @extends('layouts.app')
 @section('content')
 <div class="row">
-     <div class="col-md-12">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+    <div class="col-md-12">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-    <div class="col-md-4">
-       
-        <div class="block">
-            <div class="block-title">
-                <h2>{{strpos(Route::current()->uri,'create')?"New Student Form":"Update Student"}}</h2>
-            </div>
-            @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-            @endif
-            <form action="{{ $model->exists ? route('student.update',$model->id) : route('student.store')}}" method="post" class="">
+        @endif
+    </div>
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
+    <form action="{{ $model->exists ? route('student.update',$model->id) : route('student.store')}}" method="post" class="">
+        <div class="col-md-4">
+            <div class="block">
+                <div class="block-title">
+                    <h2>{{strpos(Route::current()->uri,'create')?"New Student Form":"Update Student"}}</h2>
+                </div>
                 @csrf
                 {{ $model->exists ? method_field('PUT') : method_field('POST') }}
                 <div class="form-group">
@@ -74,11 +73,32 @@
                 </div>
 
                 <div class="form-group form-actions">
-                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-user"></i> Input</button>
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-user"></i> Save</button>
                     <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+        @if($model->exists)
+        <div class="col-md-4">
+            <div class="block">
+                <div class="block-title">
+                    <h2>Add Class</h2>
+                </div>
+                <div class="form-group">
+                    <label>Select Class</label>
+                    
+                    <select class="form-control select-chosen" name="class_id" data-placeholder="{{$class->isEmpty() ? "All Class Are Full Pls Add New Class First" : "Choose Student Class"}}">
+                        <option {{$class->isEmpty() ? "selected" : ""}}></option>
+                        @foreach($class as $c)
+                        <option value="{{$c->id}}" {{ $c->id == $model->class_id ? "selected":false }}>{{$c->name}}</option>
+                        @endforeach
+                    </select>
+                    <span class="help-block">After choose the class you can just press save button on your left form button</span>
+                </div>
+            </div>
+        </div>
+        @endif
+    </form>
 </div>
+
 @endsection

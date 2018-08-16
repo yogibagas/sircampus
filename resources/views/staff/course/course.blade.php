@@ -35,7 +35,7 @@
                         <td class="text-center">
                              <a href="{{ route('course.edit',$l->id)}}" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
                                 <a href="{{ route('course.delete',$l->id)}}" data-toggle="tooltip" title="" class="btn btn-{{$l->status == 1?"danger":"info"}}" 
-                                   data-original-title="{{ $l->status == 1 ? "Deactive This Mahasiswa" : "Activated This Mahasiswa"}}">
+                                   data-original-title="{{ $l->status == 1 ? "Disable This Course" : "Enable This Course"}}">
                                     <i class="{{ $l->status == 1 ? 'fa fa-times' : 'fa fa-check' }}"></i>
                                 </a>
                         </td>

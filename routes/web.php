@@ -23,7 +23,7 @@ Route::group(['prefix' => 'staff'], function () {
     Route::post('/login','StaffAuth\LoginController@login')->name('staff.loginPost');
     Route::get('/logout','StaffAuth\LoginController@logout')->name('staff.logout');
 
-    // Registration Routes...
+    // database Routes...
     Route::get('/register', 'StaffAuth\RegisterController@registrationPage')->name('staff.register');
     Route::post('/register', 'StaffAuth\RegisterController@register')->name('staff.registerPost');
 
@@ -37,5 +37,7 @@ Route::group(['prefix' => 'staff'], function () {
     
     Route::resource('course','Staff\CourseController');
     Route::get('/course/{id}/delete','Staff\CourseController@delete')->name('course.delete');
+    
+    Route::resource('class','Staff\KlasController');
     });
 }); 
