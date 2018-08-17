@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Staff;
 use Carbon\Carbon;
+use Auth;
 
 class StaffController extends Controller
 {

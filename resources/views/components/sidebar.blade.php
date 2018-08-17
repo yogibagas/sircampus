@@ -50,10 +50,7 @@
                     <a href="{{route('class.index')}}" class="{{ Request::is('staff/class*') ?  'active' : '' }}"><i class="gi gi-bullhorn sidebar-nav-icon"></i>Class</a>
                 </li>
                 <li>
-                    <a href="page_widgets_media.html"><i class="gi gi-film sidebar-nav-icon"></i>Media</a>
-                </li>
-                <li>
-                    <a href="page_widgets_links.html"><i class="gi gi-link sidebar-nav-icon"></i>Links</a>
+                    <a href="{{route('schedule.index')}}" class="{{ Request::is('staff/schedule*') ?  'active' : '' }}"><i class="gi gi-stopwatch sidebar-nav-icon"></i>Schedule</a>
                 </li>
             </ul>
             <!-- END Sidebar Navigation -->

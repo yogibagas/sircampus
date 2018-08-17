@@ -45,7 +45,7 @@ class User extends Authenticatable
     }
     
     public function Klas(){
-         return $this->hasOne('App\Klas','id');
+         return $this->belongsTo('App\Klas','class_id')->withDefault();;
     }
     
 }

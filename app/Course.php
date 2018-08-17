@@ -12,6 +12,6 @@ class Course extends Model
     ];
     
     public function lecturers(){
-        return $this->hasOne('App\Lecture','id');
+        return $this->hasOne('App\Lecture','idCourses');
     }
 }

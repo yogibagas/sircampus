@@ -16,7 +16,9 @@ class AddFkDaySchedule extends Migration
         Schema::table('schedules', function (Blueprint $table) {
             //
             $table->unsignedInteger('class_id')->nullable();
-            $table->foreign('class_id')->references('id')->on('classes');
+            $table->unsignedInteger('lecture_id')->nullable();
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('lecture_id')->references('id')->on('lecturers')->onDelete('set null')->onUpdate('set null');
         });
     }
 

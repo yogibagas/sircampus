@@ -1,50 +1,41 @@
 @extends('layouts.app')
 @section('content')
 <div class="row">
-    <div class="block">
+    <div class="block" style="padding-bottom:50px;">
         <div class="block-title">
-            <h2>Students Data</h2>
+            <h2>Schedule Data</h2>
         </div>
-
-        <a href="{{route('student.create')}}" class=" btn btn-default" style="margin-bottom:20px;">Create new student</a>
-
+        <a href="{{route('schedule.create')}}" class=" btn btn-default" style="margin-bottom:20px;">Add New Schedule</a>
         @if(Session::has('success'))
-        <div class="alert alert-danger">
+        <div class="alert        alert-danger">
             {{Session::get('success')}}
         </div>
         @endif
         <div class="table-responsive">
-            <table id="example-datatable" class="table table-vcenter table-bordered table-striped">
+
+            <table id="" class="table table-vcenter table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>NIM</th>
-                        <th>Name</th>
-                        <th>Date Of Birth</th>
-                        <th>Gender</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Generation</th>
-                        <th>Status</th>
+                        <th>No</th>
+                        <th>Class</th>
+                        <th> Day</th>
+                        <th>Course</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($data as $d)
                     <tr>
-                        <td>{{$d->nim}}</td>
-                        <td>{{ucwords($d->name)}}</td>
-                        <td>{{Helper::formatDate('d F Y',$d->dob)}}</td>
-                        <td>{{$d->genderFake}}</td>
-                        <td>{{$d->address}}</td>
-                        <td>{{$d->phone}}</td>
-                        <td>{{Helper::formatDate('Y',$d->created_at)}}</td>
-                        <td>{{ $d->fakeStatus }}</td>
-                        <td class="text-center">
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$d->classes->name}}</td>
+                        <td>{{'Every '.Helper::formatDate('l',$d->firstDate)}}<br> {{'Start from '.Helper::formatDate('d - F - y',$d->firstDate)}}</td>
+                        <td>{{$d->lecturers->courses->name}}</td>
+                        <td>
                             <div class="btn-group btn-group-xs">
-                                <a href="{{ route('student.edit',$d->id)}}" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                <a href="{{ route('student.delete',$d->id)}}" data-toggle="tooltip" title="" class="btn btn-{{$d->status == 1?"danger":"info"}}" 
-                                   data-original-title="{{ $d->status == 1 ? "Deactive This Mahasiswa" : "Activated This Mahasiswa"}}">
-                                    <i class="{{ $d->status == 1 ? 'fa fa-times' : 'fa fa-check' }}"></i>
+                                <a href="{{ route('schedule.edit',$d->id)}}" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                <a href="{{ route('schedule.delete',$d->id)}}" data-toggle="tooltip" title="" class="btn btn-danger" 
+                                   data-original-title="Delete">
+                                    <i class="fa fa-times"></i>
                                 </a>
                                 <a href="#" data-toggle="modal" data-target="#myModal"
                                    class="btn btn-primary" id="{{$d->id}}}" data-id="{{$d->id}}">
@@ -59,7 +50,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -83,7 +73,7 @@
         $("#myModal").on('show.bs.modal', function (e) {
             var id = $(e.relatedTarget).data('id');
             $.ajax({
-                url: "student/" + id,
+                url: "schedule/" + id,
                 method: "GET",
                 beforeSend: function (xhr) {
                     $(".fetched-data").html("<div class='fa fa-spin fa-spinner'></div>");
@@ -91,30 +81,30 @@
                 success: function (data) {
                     var html = '<table class="table table-striped">' +
                             '<tr>' +
-                            '<td width="10%">NIM</td>' +
+                            '<td width="25%">Class Name</td>' +
                             '<td width="5%">:</td>' +
-                            '<td>' + data.nim + '</td>' +
+                            '<td><a href="#">' + data.classes.name + '</a></td>' +
                             '</tr>' +
                             '<tr>' +
-                            '<td>Name</td>' +
+                            '<td>Course</td>' +
                             '<td>:</td>' +
-                            '<td>' + data.name + '</td>' +
+                            '<td>' + data.lecturers.courses.name + '</td>' +
                             '</tr>' +
                             '<tr>' +
-                            '<td>Phone</td>' +
+                            '<td>Lecturer Name</td>' +
                             '<td>:</td>' +
-                            '<td>' + data.phone + '</td>' +
+                            '<td>' + data.lecturers.name + '</td>' +
                             '</tr>' +
                             '<tr>' +
-                            '<td>Class</td>' +
+                            '<td>Time</td>' +
                             '<td>:</td>' +
-                            '<td><strong><a href="#">' + data.klas.name + '</a></strong></td>' +
+                            '<td>' + data.timeStart + '</td>' +
                             '</tr>' +
                             '<tr>' +
-                            '<td>Address</td>' +
-                            ' <td>:</td>' +
-                            '<td>' + data.address + '</td>' +
-                            ' </tr>' +
+                            '<td>Duration</td>' +
+                            '<td>:</td>' +
+                            '<td><strong>' + data.duration + ' Mins</strong></td>' +
+                            '</tr>' +
                             '</table>';
                     $(".fetched-data").html(html);
                 }

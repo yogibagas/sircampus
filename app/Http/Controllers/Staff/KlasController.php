@@ -95,4 +95,10 @@ class KlasController extends Controller
     {
         //
     }
+    public function delete($id){
+        $data = Klas::findOrFail($id);
+        $data->delete();
+        \Session::flash('success','Class '.$data->name.' successfully delete');
+        return redirect()->route('class.index');
+    }
 }

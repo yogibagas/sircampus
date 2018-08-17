@@ -67,8 +67,7 @@ class LectureController extends Controller
     public function show($id)
     {
         //
-        $lecture = Lecturer::where('id',$id)->orderBy('id','asc')
-                ->orderBy('status','asc')
+        $lecture = Lecturer::where('id',$id)
                 ->with('courses')->first();
         return response()->json($lecture);
     }

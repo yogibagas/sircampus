@@ -31,9 +31,9 @@
                      <td> 
                             <div class="btn-group btn-group-xs">
                                 <a href="{{ route('course.edit',$d->id)}}" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                <a href="{{ route('course.destroy',$d->id)}}" data-toggle="tooltip" title="" class="btn btn-{{$d->status == 1?"danger":"info"}}" 
-                                   data-original-title="{{ $d->status == 1 ? "Deactive This Mahasiswa" : "Activated This Mahasiswa"}}">
-                                    <i class="{{ $d->status == 1 ? 'fa fa-times' : 'fa fa-check' }}"></i>
+                                <a href="{{ route('course.delete',$d->id)}}" data-toggle="tooltip" title="" class="btn btn-danger" 
+                                   data-original-title="Delete">
+                                    <i class="fa fa-times"></i>
                                 </a>
                             </div>
                      </td>

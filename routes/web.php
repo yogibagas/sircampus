@@ -13,7 +13,7 @@
 
 
 Auth::routes();
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => 'auth:web'],function(){
 Route::get('/', 'HomeController@index')->name('home');
 });
 
@@ -24,6 +24,7 @@ Route::group(['prefix' => 'staff'], function () {
     Route::get('/logout','StaffAuth\LoginController@logout')->name('staff.logout');
 
     // database Routes...
+    
     Route::get('/register', 'StaffAuth\RegisterController@registrationPage')->name('staff.register');
     Route::post('/register', 'StaffAuth\RegisterController@register')->name('staff.registerPost');
 
@@ -38,6 +39,13 @@ Route::group(['prefix' => 'staff'], function () {
     Route::resource('course','Staff\CourseController');
     Route::get('/course/{id}/delete','Staff\CourseController@delete')->name('course.delete');
     
+    Route::resource('course','Staff\CourseController');
+    Route::get('/course/{id}/delete','Staff\CourseController@delete')->name('course.delete');
+    
     Route::resource('class','Staff\KlasController');
+    Route::get('/class/{id}/delete','Staff\KlasController@delete')->name('course.delete');
+    
+    Route::resource('schedule','Staff\ScheduleController');
+    Route::get('/schedule/{id}/delete','Staff\ScheduleController@delete')->name('schedule.delete');
     });
 }); 

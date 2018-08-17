@@ -13,7 +13,10 @@ class Klas extends Model
         'name','maxPerson'
     ];
     
-    public function Students(){
+    public function students(){
          return $this->hasOne('App\User','id');
     }
+     public function lecturers(){ 
+         return belongsToMany(Lecturer::class,'Schedule');
+     }
 }

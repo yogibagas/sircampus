@@ -86,7 +86,8 @@
                     $(".fetched-data").html("<div class='fa fa-spin fa-spinner'></div>");
                 },
                 success: function (data) {
-                    var html = '<table class="table table-striped">' +
+        console.log(data);          
+        var html = '<table class="table table-striped">' +
                             '<tr>' +
                             '<td width="10%">ID</td>' +
                             '<td width="5%">:</td>' +

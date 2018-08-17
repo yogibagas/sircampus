@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Staff\Lecture;
+namespace App\Http\Requests\Staff\Schedule;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,12 +24,11 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'gender'=>'required',
-            'dob'=>'required',
-            'phone'=>'required|numeric',
-            'address'=>'required',
-            'idCourses'=>'required'
+                'firstDate' => "required",
+                'timeStart' => "required",
+                'duration' => "required|min:50|max:100|numeric",
+                'class_id' => "required",
+                'lecture_id' => "required"
         ];
     }
 }

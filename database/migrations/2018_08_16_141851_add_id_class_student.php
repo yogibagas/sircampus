@@ -16,7 +16,7 @@ class AddIdClassStudent extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
             $table->unsignedInteger('class_id')->nullable();
-            $table->foreign('class_id')->references('id')->on('classes');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
         });
     }
 
